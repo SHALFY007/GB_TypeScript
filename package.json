@@ -1,0 +1,29 @@
+{
+  "name": "gb_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "http-server -p 9090"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SHALFY007/GB_TypeScript.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SHALFY007/GB_TypeScript/issues"
+  },
+  "homepage": "https://github.com/SHALFY007/GB_TypeScript#readme",
+  "dependencies": {
+    "moment": "^2.29.4",
+    "typescript": "^4.9.4"
+  },
+  "type": "module",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
