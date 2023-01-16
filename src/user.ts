@@ -6,7 +6,6 @@ export function getUserData ():Storage {
 export function getFavoritesAmount ():string {
   return localStorage.getItem('favoritesAmount')
 }
-
 export function renderUserBlock (name:string, link:string, amount:string) {
   const favoritesCaption = +amount >=  1 ? amount : 'ничего нет'
   const hasFavoriteItems = +amount >=  1 ? true : false
