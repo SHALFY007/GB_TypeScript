@@ -1,8 +1,15 @@
 import { renderBlock } from './lib.js'
 
-export function renderUserBlock (name:string, link:string, amount:number) {
-  const favoritesCaption = amount >=  1 ? amount : 'ничего нет'
-  const hasFavoriteItems = amount >=  1 ? true : false
+export function getUserData ():Storage {
+  return JSON.parse(localStorage.getItem('user'))
+}
+export function getFavoritesAmount ():string {
+  return localStorage.getItem('favoritesAmount')
+}
+
+export function renderUserBlock (name:string, link:string, amount:string) {
+  const favoritesCaption = +amount >=  1 ? amount : 'ничего нет'
+  const hasFavoriteItems = +amount >=  1 ? true : false
 
   renderBlock(
     'user-block',
