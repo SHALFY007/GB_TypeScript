@@ -87,11 +87,12 @@ export function renderSearchResultsBlock ( ) {
   )
 }
 export function renderSearchResultsBlockOne (par) {
+  console.log(par.favorites)
   renderBlockMore('results-list',
-  ` <li class="result">
+  ` <li class="result" >
   <div class="result-container">
     <div class="result-img-container">
-      <div class="favorites active"></div>
+      <div id="${par.id}" class="favorites ${par.favorite}"></div>
       <img class="result-img" src="${par.image}" alt="">
     </div>	
     <div class="result-info">

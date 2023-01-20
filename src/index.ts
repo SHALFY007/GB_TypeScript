@@ -3,6 +3,7 @@ import { SearchFormData, search } from './search.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 import { renderToast } from './lib.js'
+import {toggleFavoriteItem} from './add-mark.js'
 
 let now = new Date();
 let currentDate:Date = new Date(
@@ -18,18 +19,19 @@ let nextTrip:Date = new Date(
 // 
 
 window.addEventListener('DOMContentLoaded', () => {
+  // localStorage.setItem('favoriteItems', "0")
   localStorage.setItem('user', JSON.stringify({username: "Wade Warren", avatarUrl: "/img/avatar.png"}))
-  localStorage.setItem('favoritesAmount', '/img/avatar.png')
+  // localStorage.setItem('favoritesAmount', '0')
   renderUserBlock(getUserData().username, getUserData().avatarUrl, getFavoritesAmount())
   renderSearchFormBlock(currentDate, nextTrip)
   renderSearchStubBlock()
-  const a:HTMLInputElement = document.querySelector('.max-price')
+  const input:HTMLInputElement = document.querySelector('.max-price')
   document.querySelector('button').addEventListener('click', e => {
     e.preventDefault()
     const formInfo: SearchFormData = {
       inputDate: currentDate,
       outPutDate: nextTrip,
-      maxPrice: a.value
+      maxPrice: input.value
     }
     search(formInfo)
   })
