@@ -14,7 +14,7 @@ interface Place {
   description: string,
   favorite: string
 }
-let list = []
+let list:Array<Place> = []
 let favorite:string = ''
 
 export async function search(SearchFormData:SearchFormData):Promise<void> {
@@ -23,12 +23,12 @@ export async function search(SearchFormData:SearchFormData):Promise<void> {
     await fetch(`http://localhost:3030/places/${i}`)
     .then(data => data.json())
     .then(res => {
-      console.log(res)
-      console.log(JSON.parse(localStorage.getItem('favoriteItems')))
       if (res.price <= +SearchFormData.maxPrice) {
-        if (res.id == 5 && JSON.parse(localStorage.getItem('favoriteItems'))) {
-          favorite = 'active'
-        }
+        JSON.parse(localStorage.getItem('favoriteItems')).forEach(el => {
+          if (res.id === el.id) {
+            favorite = 'active'
+          }
+        })
         let Place:Place = {
           id: res.id,
           name: res.name,
@@ -40,9 +40,11 @@ export async function search(SearchFormData:SearchFormData):Promise<void> {
         list.push(Place)
       }
     })
+    favorite = ''
   }
   renderSearchResultsBlock()
-  list.forEach(e => renderSearchResultsBlockOne(e))
+  list.forEach(e => {
+    renderSearchResultsBlockOne(e)})
   let b = document.querySelectorAll('.favorites')
   b.forEach((e, index) => {
     e.addEventListener('click', (e) => {

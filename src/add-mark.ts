@@ -3,12 +3,10 @@ import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 export function toggleFavoriteItem (e, index) {
     let oldItems:Array<any> = JSON.parse(localStorage.getItem('favoriteItems')) || [];
     let as:number = oldItems.find(a => {
-        // console.log(a)
         return a.id == index.id
     })
-    console.log(as)
     e.classList.toggle('active')
-    if (e.classList.contains('active') && as) {
+    if (e.classList.contains('active')) {
         localStorage.setItem('favoritesAmount', (+localStorage.getItem('favoritesAmount')+1).toString())
         oldItems.push(index);
         localStorage.setItem('favoriteItems', JSON.stringify(oldItems))
