@@ -1,4 +1,4 @@
-import { renderBlock } from './lib.js'
+import { renderBlock, renderBlockMore } from './lib.js'
 
 export function renderSearchStubBlock () {
   renderBlock(
@@ -24,7 +24,7 @@ export function renderEmptyOrErrorSearchBlock (reasonMessage) {
   )
 }
 
-export function renderSearchResultsBlock () {
+export function renderSearchResultsBlock ( ) {
   renderBlock(
     'search-results-block',
     `
@@ -40,7 +40,7 @@ export function renderSearchResultsBlock () {
         </div>
     </div>
     <ul class="results-list">
-      <li class="result">
+      <!--<li class="result">
         <div class="result-container">
           <div class="result-img-container">
             <div class="favorites active"></div>
@@ -81,8 +81,34 @@ export function renderSearchResultsBlock () {
             </div>
           </div>
         </div>
-      </li>
+      </li>-->
     </ul>
     `
+  )
+}
+export function renderSearchResultsBlockOne (par) {
+  console.log(par.favorites)
+  renderBlockMore('results-list',
+  ` <li class="result" >
+  <div class="result-container">
+    <div class="result-img-container">
+      <div id="${par.id}" class="favorites ${par.favorite}"></div>
+      <img class="result-img" src="${par.image}" alt="">
+    </div>	
+    <div class="result-info">
+      <div class="result-info--header">
+        <p>${par.name}</p>
+        <p class="price">${par.price}&#8381;</p>
+      </div>
+      <div class="result-info--map"><i class="map-icon"></i> 2.5км от вас</div>
+      <div class="result-info--descr">${par.description}</div>
+      <div class="result-info--footer">
+        <div>
+          <button>Забронировать</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>`
   )
 }

@@ -3,6 +3,11 @@ export function renderBlock (elementId, html) {
   element.innerHTML = html
 }
 
+export function renderBlockMore(elementId, html) {
+  const element = document.querySelector(`.${elementId}`)
+  element.insertAdjacentHTML('beforeend', html)
+}
+
 export function renderToast (message, action?) {
   let messageText = ''
   
