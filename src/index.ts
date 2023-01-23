@@ -1,21 +1,33 @@
 import { renderSearchFormBlock } from './search-form.js'
+import { SearchFormData, search } from './search.js'
 import { renderSearchStubBlock } from './search-results.js'
-import { renderUserBlock } from './user.js'
+import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 import { renderToast } from './lib.js'
 
-window.addEventListener('DOMContentLoaded', () => {
-  let now = new Date();
-  let currentDate:Date = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 2,
-  )
-  let nextTrip:Date = new Date(
+let now = new Date();
+let currentDate:Date = new Date(
     now.getFullYear(),
     now.getMonth(),
-    now.getDate() + 4
-  )
-  renderUserBlock('Wade Warren', '/img/avatar.png', 0)
+    now.getDate() + 2,
+)
+let nextTrip:Date = new Date(
+  now.getFullYear(),
+  now.getMonth(),
+  now.getDate() + 4
+)
+
+const formInfo: SearchFormData = {
+  inputDate: currentDate,
+  outPutDate: nextTrip,
+  maxPrice: 10
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  localStorage.setItem('user', JSON.stringify({username: "Wade Warren", avatarUrl: "/img/avatar.png"}))
+  localStorage.setItem('favoritesAmount', '/img/avatar.png')
+
+  search(formInfo)
+  renderUserBlock(getUserData().username, getUserData().avatarUrl, getFavoritesAmount())
   renderSearchFormBlock(currentDate, nextTrip)
   renderSearchStubBlock()
   renderToast(
