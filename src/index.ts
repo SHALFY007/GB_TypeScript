@@ -4,6 +4,8 @@ import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 import { renderToast } from './lib.js'
 import {toggleFavoriteItem} from './add-mark.js'
+// @ts-ignore  
+import {FlatRentSdk} from './flat-rent-sdk.js'
 
 let now = new Date();
 let currentDate:Date = new Date(
