@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   Promise.all([
-    api.find(filter)
+    api.find(filter),
     sdk.find(filter)
   ])
   .then(res => console.log(res))
