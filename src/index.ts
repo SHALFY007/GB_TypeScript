@@ -22,18 +22,18 @@ let nextTrip:Date = new Date(
 // 
 
 window.addEventListener('DOMContentLoaded', () => {
-  let api = new ApiProvider()
-  let sdk = new SdkProvider()
+  // let api = new ApiProvider()
+  // let sdk = new SdkProvider()
   
-  const filter: SearchFilter = {
-    type: Type.Homy
-  }
+  // const filter: SearchFilter = {
+  //   type: Type.Homy
+  // }
 
-  Promise.all([
-    api.find(filter),
-    sdk.find(filter)
-  ])
-  .then(res => console.log(res))
+  // Promise.all([
+  //   api.find(filter),
+  //   sdk.find(filter)
+  // ])
+  // .then(res => console.log(res))
 
   // localStorage.setItem('favoriteItems', "0")
   localStorage.setItem('user', JSON.stringify({username: "Wade Warren", avatarUrl: "/img/avatar.png"}))
@@ -41,8 +41,9 @@ window.addEventListener('DOMContentLoaded', () => {
   renderUserBlock(getUserData().username, getUserData().avatarUrl, getFavoritesAmount())
   renderSearchFormBlock(currentDate, nextTrip)
   renderSearchStubBlock()
-  const input:HTMLInputElement = document.querySelector('.max-price')
-  document.querySelector('button').addEventListener('click', e => {
+  const input:HTMLInputElement | any = document.querySelector('.max-price')
+  const btn:HTMLButtonElement | any = document.querySelector('button')
+  btn.addEventListener('click', (e:Event) => {
     e.preventDefault()
     const formInfo: SearchFormData = {
       inputDate: currentDate,
@@ -51,6 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     search(formInfo)
   })
+
   renderToast(
       {text: 'Это пример уведомления. Используйте его при необходимости', type: 'success'},
       {name: 'Понял', handler: () => {console.log('Уведомление закрыто')}}

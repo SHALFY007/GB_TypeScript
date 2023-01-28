@@ -1,9 +1,12 @@
 import { renderBlock } from './lib.js'
 
-export function getUserData ():Storage {
-  return JSON.parse(localStorage.getItem('user'))
+
+export function getUserData ():Storage | any  {
+  const user:string | null = localStorage.getItem('user')
+  if (user) return JSON.parse(user)
+  
 }
-export function getFavoritesAmount ():string {
+export function getFavoritesAmount ():string | any {
   return localStorage.getItem('favoritesAmount')
 }
 export function renderUserBlock (name:string, link:string, amount:string) {
