@@ -3,8 +3,7 @@ import { SearchFormData, search } from './search.js'
 import { renderSearchStubBlock } from './search-results.js'
 import { renderUserBlock, getUserData, getFavoritesAmount } from './user.js'
 import { renderToast } from './lib.js'
-import {toggleFavoriteItem} from './add-mark.js'
-
+import {toggleFavoriteItem} from './add-mark.js' 
 let now = new Date();
 let currentDate:Date = new Date(
     now.getFullYear(),
