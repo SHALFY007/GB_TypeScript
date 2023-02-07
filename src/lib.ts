@@ -1,14 +1,21 @@
-export function renderBlock (elementId, html) {
-  const element = document.getElementById(elementId)
+export function renderBlock (elementId:string, html:string) {
+  const element: Element | any = document.getElementById(elementId)
   element.innerHTML = html
 }
 
-export function renderBlockMore(elementId, html) {
-  const element = document.querySelector(`.${elementId}`)
+export function renderBlockMore(elementId:string, html:string) {
+  const element: Element | any = document.querySelector(`.${elementId}`)
   element.insertAdjacentHTML('beforeend', html)
 }
-
-export function renderToast (message, action?) {
+type Toast<T> = {
+  text: T,
+  type: T
+}
+type ToastAction<T> = {
+  name: T,
+  handler: CallableFunction
+}
+export function renderToast (message: Toast<Object> | null, action?:ToastAction<Object>) {
   let messageText = ''
   
   if (message != null) {
