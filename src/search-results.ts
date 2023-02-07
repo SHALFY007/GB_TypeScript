@@ -12,7 +12,7 @@ export function renderSearchStubBlock () {
   )
 }
 
-export function renderEmptyOrErrorSearchBlock (reasonMessage) {
+export function renderEmptyOrErrorSearchBlock (reasonMessage:string) {
   renderBlock(
     'search-results-block',
     `
@@ -86,8 +86,15 @@ export function renderSearchResultsBlock ( ) {
     `
   )
 }
-export function renderSearchResultsBlockOne (par) {
-  console.log(par.favorites)
+type parametersResultOne = {
+  id: string,
+  favorite: string,
+  image: string,
+  name: string,
+  price:number,
+  description: string
+}
+export function renderSearchResultsBlockOne (par:parametersResultOne) {
   renderBlockMore('results-list',
   ` <li class="result" >
   <div class="result-container">

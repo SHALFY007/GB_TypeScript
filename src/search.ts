@@ -8,7 +8,7 @@ export interface SearchFormData {
     outPutDate: Date,
     maxPrice: string
   }
-interface Place {
+export interface Place {
   id: string
   name: string,
   image: string,
@@ -22,9 +22,14 @@ let favorite:string = ''
 let conditional:Array<String> = []
 
 
+type favoriteItems = {
+  id: string
+}
+
 function addSearch(res:Place) {
-  if (localStorage.getItem('favoriteItems')) {
-    JSON.parse(localStorage.getItem('favoriteItems')).forEach(el => {
+  const items:string | null = localStorage.getItem('favoriteItems')
+  if (items) {
+    JSON.parse(items).forEach((el:favoriteItems) => {
       if (res.id === el.id) {
         favorite = 'active'
       }
@@ -64,9 +69,20 @@ async function searchFlat() {
   }
 }
 
+
+export type databaseEl<T> =  Place & {
+  id: string,
+  title: string,
+  photos: any,
+  price: number,
+  details: string, 
+  favorite: string,
+}
+
 function searchHomy() {
+  
   let a =  new FlatRentSdk().database
-    a.forEach(e => {
+    a.forEach((e: databaseEl<Place>) => {
       addSearch(e)
       let Place:Place = {
         id: e.id,
@@ -93,8 +109,8 @@ export async function search(SearchFormData:SearchFormData):Promise<void> {
   list.forEach(e => {
     renderSearchResultsBlockOne(e)})
   let b = document.querySelectorAll('.favorites')
-  b.forEach((e, index) => {
-    e.addEventListener('click', (e) => {
+  b.forEach((e:HTMLInputElement | Element, index) => {
+    e.addEventListener('click', (e:any) => {
       toggleFavoriteItem(e.target, list[index])
   })
   })
